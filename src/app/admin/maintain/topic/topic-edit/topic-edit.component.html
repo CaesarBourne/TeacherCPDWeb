@@ -1,0 +1,80 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">{{course.name}}
+                <button  class="btn btn-danger btn-rounded pull-right" (click)="delete()">
+                    <i class="icon-trash position-left"></i> Delete</button>
+        </h5>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Topics
+                        </h5>
+                    </div>
+
+                    <div class="panel-body">
+                        <ol>
+                                <li *ngFor="let topic of topics">
+                                        <a style="text-decoration: underline" routerLink='/admin/maintain/course/{{course.id}}/topic/{{topic.id}}'>{{topic.name}}</a>
+                                    </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Add Topic
+                        </h5>
+                    </div>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Index: </label>
+                                <div class="col-md-8">
+                                    <input name="index" [(ngModel)]="topic.index" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Name: </label>
+                                <div class="col-md-8">
+                                    <input name="name" [(ngModel)]="topic.name" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Notes: </label>
+                                <div class="col-md-8">
+                                    <textarea id="notes" name="notes" [(ngModel)]="topic.notes" cols="10" rows="10" class="form-control" placeholder="Enter note ...">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Video: </label>
+                                <div class="col-md-8">
+                                    <div class="">
+                                        <div class="uploader mt-10">
+                                            <input (change)="onVideoChange($event)" name="Video" type="file" class="form-control file-styled" accept="video/*">
+                                            <span class="filename" style="user-select: none;">No file selected</span>
+                                            <span class="action btn btn-default" style="user-select: none;">Choose File</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button (click)="cancel()" class="btn btn-danger mr-10">Cancel</button>
+                                <button type="submit" class="btn btn-primary" (click)="submit()">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,130 @@
+<div class="panel panel-flat">
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-9 pull-right">
+                <form class="form-horizontal">
+
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label">Assessment Name: </label>
+                        <div class="col-md-8">
+                            <input name="assessment name" [(ngModel)]="assessment.name" type="text" class="form-control" [readonly]="!isEditAssessment">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label">Duration: </label>
+                        <div class="col-md-8">
+                            <input name="assessment duration" type="text" [(ngModel)]="assessment.duration" class="form-control" [readonly]="!isEditAssessment">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary  mr-10" *ngIf="isEditAssessment" (click)="cancelEditAssessment()">
+                            <i class="icon-cancel-circle2 position-left"> </i>cancel</button>
+                        <button type="submit" class="btn btn-primary" *ngIf="!isEditAssessment" (click)="editAssessment()">
+                            <i class="icon-pencil position-left" *ngIf="!isEditingEditingAssessment"></i>
+                            Edit
+                        </button>
+                        <button type="submit" class="btn btn-primary" *ngIf="isEditAssessment" (click)="onEditAssessment()">
+                            <i class="icon-pencil position-left" *ngIf="!isEditingEditingAssessment"></i>
+                            <i class="icon-spinner3 spinner position-left" *ngIf="isEditingAssessment"></i>
+                            Update
+
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Questions
+                        </h5>
+                    </div>
+
+                    <div class="panel-body">
+                        <ol>
+                            <li *ngFor="let question of questions">
+                                <a style="text-decoration: underline" routerLink='/admin/maintain/assessment/{{assessment.id}}/question/{{question.id}}'>{{question.question | slice:0:15}}...</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Add Question
+                        </h5>
+                    </div>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Index: </label>
+                                <div class="col-md-8">
+                                    <input name="index" [(ngModel)]="question.index" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Question: </label>
+                                <div class="col-md-8">
+                                    <textarea id="question" name="question" [(ngModel)]="question.question" cols="10" rows="10" class="form-control" placeholder="Please Enter Text ...">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">options: </label>
+                                <div class="col-md-6">
+                                    <ol type="a">
+                                        <li *ngFor="let option of question.options; let $index = index">
+                                            <div class="col-xs-1">
+                                                <button type="button" class="btn border-danger btn-flat btn-xs text-danger-800 btn-icon btn-rounded" (click)="deleteOption($index)">
+                                                    <i class="icon-trash"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-11">
+                                                <input name="{{$index}}" type="text" class="form-control" [(ngModel)]="option.value">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+
+                                    </ol>
+                                    <div class="col-xs-2 mt-5">
+                                        <button type="button" class="btn btn-xs btn-primary" (click)="addOption()">
+                                            <i class="icon-add position-left"></i> Add</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <label class="col-xs-2 control-label">Correct Answer: </label>
+                                        <div class="col-xs-10">
+                                            <select class="form-control" name="answer" [(ngModel)]="question.answer">
+                                                <option [value]="">--Select an Option--</option>
+                                                <option *ngFor="let answer of question.options;let $index = index"  [value] = "$index">{{answer.value}}</option>
+                                            </select>
+                                        </div>
+
+                                </div>
+
+                            </div>
+                            <div class="text-right">
+                                <button (click)="cancel()" class="btn btn-danger mr-10" [disabled]="isSaving">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="isSaving" (click)="submit()">Submit
+                                    <i class="icon-arrow-right14 position-right" *ngIf="!isSaving"></i>
+                                    <i class="icon-spinner3 spinner position-right" *ngIf="isSaving"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

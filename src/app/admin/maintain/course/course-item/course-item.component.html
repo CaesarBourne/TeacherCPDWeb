@@ -1,0 +1,105 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">{{course.name}}
+        </h5>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <div style="width: 120px; height: 120px; border: 3px #e8e8e8 solid">
+                            <img id="imagePreview" alt="image preview" src="http://localhost:8080/{{course.image}}" class="center-block img-responsive">
+                        </div>
+                        <div class="col-md-2">
+                            <div class="uploader mt-10">
+                                <input name="imagePreview" type="file" (change)="onImageChange($event)" class="form-control file-styled">
+                                <span class="action btn btn-default" style="user-select: none;">Choose File</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="col-md-10">
+                            <button class="btn btn-success btn-rounded mb-10 pull-right" (click)="updateCourse()">
+                                    <i class="icon-pencil position-left" *ngIf="!isUpdating"></i>
+                                    <i class="icon-spinner3 spinner position-left" *ngIf="isUpdating"></i>
+                            Update Course</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Course Name: </label>
+                            <div class="col-md-8 ">
+                                <input name="courseName" [(ngModel)]="course.name" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Category: </label>
+                            <div class="col-md-8">
+                                <select name="Category" [(ngModel)]="course.category" type="text" class="form-control">
+                                    <option *ngFor="let category of categories;let $index = index" [ngValue]="category.id" >{{category.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Difficulty: </label>
+                            <div class="col-md-8">
+                                <select name="Difficulty" [(ngModel)]="course.difficulty" type="text" class="form-control">
+                                    <option [ngValue]="1">Beginner</option>
+                                    <option [ngValue]="2">Medium</option>
+                                    <option [ngValue]="3">Advance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Description: </label>
+                            <div class="col-md-8 ">
+                                <textarea id="description" name="description" [(ngModel)]="course.description" cols="10" rows="10" class="form-control" placeholder="Enter text ...">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Pre requisite: </label>
+                            <div class="col-md-8 ">
+                                <div [froalaEditor]='editorOptions' [(froalaModel)]="course.prerequisites"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Learning Outcome: </label>
+                            <div class="col-md-8 ">
+                                <div [froalaEditor]='editorOptions' [(froalaModel)]="course.outcomes"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Syllabus: </label>
+                            <div class="col-md-8 ">
+                                <div [froalaEditor]='editorOptions' [(froalaModel)]="course.syllabus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title d-inline-block">Course Topics
+
+                                    <a routerLink="/admin/maintain/course/{{course.id}}/topics/" class="btn btn-primary btn-rounded pull-right">
+                                        <i class="icon-plus2 position-left"></i> Add Topic</a>
+                                </h5>
+                            </div>
+                            <div class="panel-body">
+                                <ol>
+                                    <li *ngFor="let topic of topics">
+                                        <a style="text-decoration: underline" routerLink='/admin/maintain/course/{{course.id}}/topic/{{topic.id}}'>{{topic.name}}</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>

@@ -1,0 +1,82 @@
+<!-- Page container -->
+<div class="page-container">
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Content area -->
+			<div class="content">
+
+				<!-- Simple login form -->
+				<form action="index.html" #loginForm="ngForm" (ngSubmit)="submit()">
+					<div class="panel panel-body login-form">
+						<div class="text-center">
+							<div class="icon-object border-slate-300 text-slate-300">
+								<i class="icon-reading"></i>
+							</div>
+							<img *ngIf="submitting" src="/assets/images/loading-icon.gif" alt="loading icon" class="loading-gif" >
+							<h5 class="content-group">Login to your account
+								<div class="alert alert-danger alert-bordered" *ngIf="showError">
+									<button type="button" class="close" (click)="hideErrorBlock()">
+									<span>*</span><span class="sr-only">close</span>
+									</button>
+									<span class="text-semibold text-size-mini">Invalid username or password</span>
+								</div>
+								<small class="display-block">Enter your credentials below</small>
+							</h5>
+						</div>
+
+						<div class="form-group has-feedback has-feedback-left">
+							<input id="username" type="text" required #username="ngModel" [(ngModel)]="model.username" name="username" class="form-control" placeholder="username">
+							<div class="form-control-feedback">
+								<i class="icon-user text-muted"></i>
+							</div>
+							<div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+								Username is required
+							</div>
+						</div>
+
+						<div class="form-group has-feedback has-feedback-left">
+							<input type="password" #password="ngModel" required [(ngModel)]="model.password" name="password" class="form-control" placeholder="Password">
+							<div class="form-control-feedback">
+								<i class="icon-lock2 text-muted"></i>
+							</div>
+							<div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+								Password is required
+							</div>
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.form.valid || submitting">Sign in
+								<i class="icon-circle-right2 position-right"></i>
+							</button>
+						</div>
+
+						<!-- <div class="text-center">
+								<a href="login_password_recover.html">Forgot password?</a>
+							</div> -->
+					</div>
+				</form>
+				<!-- /simple login form -->
+
+
+				<!-- Footer -->
+				<div class="footer text-muted text-center">
+					&copy; 2018. Created by:
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</div>
+<!-- /page container -->

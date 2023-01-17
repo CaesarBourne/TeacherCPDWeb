@@ -1,0 +1,53 @@
+<div class="panel panel-flat">
+    <div class="panel-body">
+      <div class="center-block">
+        <div class="panel panel-flat center-block" style="max-width: 600px;">
+                <div class="panel-heading">
+                        <h6 class="panel-title text-center">
+                        <i class="icon-arrow-left13 pull-left cursor-pointer"  style="font-size: 30px" (click)="back()"></i>
+                            Add New Assessment</h6>
+                       
+                    </div>
+            <div class="panel-body">
+                    <form class="form-horizontal" action="#">
+							<fieldset class="content-group">
+								<legend class="text-bold">Assessment Info</legend>
+
+								<div class="form-group">
+									<label class="control-label col-lg-2">Name</label>
+									<div class="col-lg-10">
+										<input type="text" name="name" class="form-control" [(ngModel)]="assessment.name" [disabled]="assessmentCreated" >
+									</div>
+								</div>
+
+		                     
+
+								<div class="form-group">
+									<label class="control-label col-lg-2 cursor-pointer">Duration</label>
+									<div class="col-lg-10">
+										<input type="text" name="duration" class="form-control" [(ngModel)]="assessment.duration" [disabled]="assessmentCreated">
+									</div>
+								</div>
+
+							</fieldset>
+            
+                            <div class="text-right">
+                                <button  class="btn btn-primary  mr-10"   [disabled]="isSaving" (click)="cancel()"><i class="icon-cancel-circle2 position-left" [hidden]="assessmentCreated"> </i>cancel</button>
+                                <button type="submit" class="btn btn-primary"   [disabled]="isSaving" (click)="submit()">Create
+                                     <i class="icon-arrow-right14 position-right"  *ngIf="!isSaving"></i>
+                                     <i class="icon-spinner3 spinner position-right" *ngIf="isSaving"></i>
+                                </button>
+                               
+                               <button type="submit" class="btn btn-primary" *ngIf="assessmentCreated">Add Questions <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                            
+						</form>
+            </div>
+        
+        
+        </div>
+      </div>
+    </div>
+
+
+</div>

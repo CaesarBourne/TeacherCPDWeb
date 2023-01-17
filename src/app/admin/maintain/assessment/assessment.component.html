@@ -1,0 +1,21 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">List of Assessments
+                <a routerLink="/admin/maintain/assessment/add"  class="btn btn-primary btn-rounded">
+                    <i class="icon-plus2 position-left"></i> Add Assessment</a>        
+        </h5>
+        
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2" *ngFor="let assessment of assessments">
+                        <i class="icon-arrow-right7 mr-5"></i><a style="text-decoration: underline" routerLink='/admin/maintain/assessment/{{assessment.id}}'>{{assessment.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

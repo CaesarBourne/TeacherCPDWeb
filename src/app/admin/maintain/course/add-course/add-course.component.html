@@ -1,0 +1,88 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Add new course
+        </h5>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal">
+                <img *ngIf="isSaving" src="/assets/images/loading-icon.gif" alt="loading icon" class="loading-gif" >
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div style="width: 250px; height: 250px; border: 3px #e8e8e8 solid">
+                            <img id="imagePreview" alt="image preview" class="center-block img-responsive">
+                        </div>
+                        <div class="">
+                            <div class="uploader mt-10">
+                                <input name="imagePreview" type="file" (change)="onImageChange($event)" class="form-control file-styled">
+                                <span class="filename" style="user-select: none;">No file selected</span>
+                                <span class="action btn btn-default" style="user-select: none;">Choose File</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Course Name: </label>
+                            <div class="col-md-8 ">
+                                <input name="courseName" [(ngModel)]="course.name" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Category: </label>
+                            <div class="col-md-8">
+                                <select name="Category" [(ngModel)]="course.difficulty" type="text" class="form-control">
+                                    <option *ngFor="let category of categories;let $index = index" [ngValue]="category.id" [selected]="$index == 1? 'selected':''">{{category.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Difficulty: </label>
+                            <div class="col-md-8">
+                                <select name="Difficulty" [(ngModel)]="course.difficulty" type="text" class="form-control">
+                                    <option [ngValue]="1">Beginner</option>
+                                    <option [ngValue]="2">Medium</option>
+                                    <option [ngValue]="3">Advance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Description: </label>
+                            <div class="col-md-8 ">
+                                <textarea id="description" name="description" [(ngModel)]="course.description" cols="10" rows="10" class="form-control" placeholder="Enter text ...">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Pre requisite: </label>
+                            <div class="col-md-8 ">
+                                <div [froalaEditor]='editorOptions' [(froalaModel)]="course.prerequisites"></div>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Learning Outcome: </label>
+                            <div class="col-md-8 ">
+                      <div [froalaEditor]='editorOptions' [(froalaModel)]="course.outcomes"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-md-2 control-label">Syllabus: </label>
+                            <div class="col-md-8 ">
+                                    <div [froalaEditor]='editorOptions' [(froalaModel)]="course.syllabus"></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button (click)="cancel()" class="btn btn-danger mr-10">Cancel</button>
+                            <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>

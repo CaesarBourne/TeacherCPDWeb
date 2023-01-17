@@ -1,0 +1,18 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">List of courses
+        </h5>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2" *ngFor="let course of courses">
+                        <i class="icon-arrow-right7 mr-5"></i><a style="text-decoration: underline" routerLink='/admin/maintain/course/{{course.id}}'>{{course.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

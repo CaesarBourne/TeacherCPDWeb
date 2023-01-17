@@ -1,0 +1,144 @@
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/">
+            <img src="assets/images/logo_light.png" alt="">
+        </a>
+
+        <ul class="nav navbar-nav pull-right visible-xs-block">
+            <li>
+                <a data-toggle="collapse" data-target="#navbar-mobile">
+                    <i class="icon-tree5"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+      
+        <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="assets/images/placeholder.jpg" alt="">
+                    <span>Victoria</span>
+                    <i class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="#">
+                            <i class="icon-user-plus"></i> My profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-cog5"></i> Account settings</a>
+                    </li>
+                    <li>
+                        <a (click)="logout()">
+                            <i class="icon-switch2"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /main navbar -->
+
+
+<!-- Second navbar -->
+<div class="navbar navbar-default" id="navbar-second">
+    <ul class="nav navbar-nav no-border visible-xs-block">
+        <li>
+            <a class="text-right collapsed" data-toggle="collapse" data-target="#navbar-second-toggle">
+                <i class="icon-menu7"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="navbar-collapse collapse" id="navbar-second-toggle">
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a routerLink="/admin/dashboard">
+                    <i class="icon-display4 position-left"></i> Dashboard</a>
+            </li>
+            <li class="dropdown">
+                <a routerLink="/admin/usermanagement/users" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-users4 position-left"></i> Usermanagement
+                </a>
+            </li>
+
+
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-cog position-left"></i> Maintain
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu width-200">
+                    <li class="dropdown-header">Basic Settings</li>
+                    <li class="dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-grid2"></i> Courses</a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a routerLink="/admin/maintain/courses">View all courses</a>
+                            </li>
+                            <li>
+                                <a routerLink="/admin/maintain/course/add">Add new course</a>
+                            </li>
+                            <li>
+                                <a routerLink="/admin/maintain/course/category">Course categories</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-paragraph-justify3"></i> Assessments</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a routerLink="/admin/maintain/assessments">View All Assessments</a>
+                            </li>
+                            <li>
+                                <a routerLink="/admin/maintain/assessment/add">Add New Assessment</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /second navbar -->
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Content area -->
+            <div class="content">
+
+                <router-outlet></router-outlet>
+                <!-- Footer -->
+                <div class="footer text-muted">
+                    &copy; 2018. Powered by Brainiacs
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
